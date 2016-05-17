@@ -1,10 +1,11 @@
 /**
-*	@file Addition.java
+*	@file Exercise00.java
 *	@author Sergio Romero Barra
 *
-*	Fourth example from Coritel Java Course.
+*	First exercise from Coritel Java Course.
 *
-*	This class reads data from the user and
+*	This class reads data from the user and compares them.
+*	Shows if they are grater, equal or lesser than the other.
 */
 
 
@@ -18,7 +19,6 @@ public class Excercise00 {
 		
 		// Vars declaration.
 		int number1, number2; // First and second number vars.
-		int result; // Store the sum result.
 		
 		// Scan object instanciation. This let us read from user input.
 		Scanner scan = new Scanner(System.in);

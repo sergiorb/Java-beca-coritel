@@ -4,7 +4,7 @@
 *
 *	Fourth example from Coritel Java Course.
 *
-*	This class reads data from the user and
+*	This class reads data from the user and sums two numbers.
 */
 
 
