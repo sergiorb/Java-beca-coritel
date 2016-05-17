@@ -1,11 +1,11 @@
 /**
-*	@file Exercise00.java
+*	@file Exercise01.java
 *	@author Sergio Romero Barra
 *
-*	First exercise from Coritel Java Course.
+*	Second exercise from Coritel Java Course.
 *
-*	This class reads data from the user and compares them.
-*	Shows if they are greater, equal or smaller than the other.
+*	This class reads data from the user and shows the product
+*	of three integer numbers.
 */
 
 
@@ -13,12 +13,13 @@ package com.sergiorb.java_beca_coritel.welcome;
 
 import java.util.Scanner;
 
-public class Excercise00 {
+public class Excercise01 {
 
 	public static void main(String[] args) {
 		
 		// Vars declaration.
-		int number1, number2; // First and second number vars.
+		int number1, number2, number3; // First and second number vars.
+		int result; // Result var.
 		
 		// Scan object instanciation. This let us read from user input.
 		Scanner scan = new Scanner(System.in);
@@ -26,26 +27,21 @@ public class Excercise00 {
 		// Controls any general exception
 		try {
 			
-			System.out.println("Introduce first number:");
+			System.out.println("Introduce first integer number:");
 			number1 = Integer.parseInt(scan.nextLine()); // Cast input string to int and stores in number1 var.
-			System.out.printf("You entered: \"%d\"\n", number1);
+			System.out.printf("You entered: \"%,d\"\n", number1);
 			
-			System.out.println("Introduce second number:");
+			System.out.println("Introduce second integer number:");
 			number2 = Integer.parseInt(scan.nextLine()); // Cast input string to int and stores in number2 var.
-			System.out.printf("You entered: \"%d\"\n", number2);
+			System.out.printf("You entered: \"%,d\"\n", number2);
 			
-			// Compares if number1 is greater, equal or smaller than number2.
-			if(number1 > number2) {
-				System.out.printf("%d greater than %d\n", number1, number2);
-			} else if (number1 == number2) {
-				System.out.printf("%d is equal to %d\n", number1, number2);
-			} else {
-				System.out.printf("%d is smaller than %d\n", number1, number2);
-			}
+			System.out.println("Introduce second integer number:");
+			number3 = Integer.parseInt(scan.nextLine()); // Cast input string to int and stores in number3 var.
+			System.out.printf("You entered: \"%,d\"\n", number3);
 			
-			if(number1 != number2) {
-				System.out.printf("%d is different from %d!!\n", number1, number2);
-			}
+			result = number1 * number2 * number3; // Multiplies each number and store it on result.
+			
+			System.out.printf("The product of %,d, %,d and %,d is %,d\n", number1, number2, number3, result); 
 			
 		} catch (Exception e) {
 			
