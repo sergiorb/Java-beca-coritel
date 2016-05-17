@@ -5,7 +5,7 @@
 *	First exercise from Coritel Java Course.
 *
 *	This class reads data from the user and compares them.
-*	Shows if they are grater, equal or lesser than the other.
+*	Shows if they are greater, equal or smaller than the other.
 */
 
 
@@ -34,13 +34,13 @@ public class Excercise00 {
 			number2 = Integer.parseInt(scan.nextLine()); // Cast input string to int and stores in number2 var.
 			System.out.printf("You entered: \"%d\"\n", number2);
 			
-			// Compares if number1 is greater, equal or lesser than number2.
+			// Compares if number1 is greater, equal or smaller than number2.
 			if(number1 > number2) {
 				System.out.printf("%d greater than %d\n", number1, number2);
 			} else if (number1 == number2) {
 				System.out.printf("%d is equal to %d\n", number1, number2);
 			} else {
-				System.out.printf("%d is lesser than %d\n", number1, number2);
+				System.out.printf("%d is smaller than %d\n", number1, number2);
 			}
 			
 		} catch (Exception e) {
