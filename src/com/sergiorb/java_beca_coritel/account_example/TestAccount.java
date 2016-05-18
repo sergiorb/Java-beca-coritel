@@ -8,7 +8,7 @@
 *
 */
 
-package com.sergiorb.java_beca_coritel.account;
+package com.sergiorb.java_beca_coritel.account_example;
 
 import java.util.Scanner;
 

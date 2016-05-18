@@ -5,7 +5,7 @@
 *	Defines an Account class with constructor that store the account name.
 */
 
-package com.sergiorb.java_beca_coritel.account;
+package com.sergiorb.java_beca_coritel.account_example;
 
 // Main class
 public class AccountWithConstructor {
