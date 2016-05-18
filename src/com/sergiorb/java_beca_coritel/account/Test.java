@@ -113,7 +113,7 @@ public class Test {
 				
 				} else { // If entered an invalid operation number...
 					
-					System.out.printf("There is no #%s operation.\n", accountNumber);
+					System.out.printf("There is no #%s operation.\n", operationNumber);
 				}
 				
 			} else { // If entered an invalid account number...
