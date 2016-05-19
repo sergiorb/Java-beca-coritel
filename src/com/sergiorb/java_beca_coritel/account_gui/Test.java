@@ -35,7 +35,7 @@ public class Test {
 				JOptionPane.showMessageDialog(null, message, appName, 1); // Shows in a dialog.
 				
 				message = String.format("Lets create a new account! What is the account name?");
-				accountName = JOptionPane.showInputDialog(message, 3); // Stores account name 
+				accountName = JOptionPane.showInputDialog(message); // Stores account name 
 				
 				// If user NOT enters a name and it is NOT greater that 0 chars...
 				if(accountName == null || accountName.length() == 0) {
