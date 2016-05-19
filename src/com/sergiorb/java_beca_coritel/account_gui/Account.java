@@ -1,12 +1,13 @@
-package com.sergiorb.java_beca_coritel.account_gui;
-
 /**
 *	@file Account.java
 *	@author Sergio Romero Barra
 *
 *	Defines an Account class that store the account name and
-*	its balance. You can set the account name, add money and subtract it.
+*	its balance. You can set the account name, add money, subtract it
+*	and print its status.
 */
+
+package com.sergiorb.java_beca_coritel.account_gui;
 
 // Main class
 public class Account {

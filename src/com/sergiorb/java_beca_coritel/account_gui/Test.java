@@ -2,9 +2,8 @@
 *	@file Test.java
 *	@author Sergio Romero Barra
 *
-*	Tests Account class, adding and subtracting money from accounts with GUI
-*	
-*	TODO: Refactor with input function and loops.
+*	Tests Account class, adding and subtracting money from account with GUI
+*
 */
 
 package com.sergiorb.java_beca_coritel.account_gui;
