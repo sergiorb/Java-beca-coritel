@@ -1,4 +1,3 @@
-package com.sergiorb.java_beca_coritel.interest;
 /**
 *	@file Interest.java
 *	@author Sergio Romero Barra
@@ -19,6 +18,8 @@ package com.sergiorb.java_beca_coritel.interest;
 *	The solution to this problem involves a loop that performs the indicated calculation 
 *	for each of the 10 years the money remains on deposit.
 */
+
+package com.sergiorb.java_beca_coritel.interest;
 
 // Main class
 public class Interest {

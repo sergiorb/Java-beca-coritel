@@ -1,26 +1,34 @@
+/**
+*	@file LetterGrades.java
+*	@author Sergio Romero Barra
+*
+*	calculates the class average of a set of numeric grades 
+*	entered by the user, and uses a switch statement to determine 
+*	whether each grade is the equivalent of an A, B, C, D or F 
+*	and to increment the appropriate grade counter. The program 
+*	also displays a summary of the number of students who received 
+*	each grade.
+*/
+
 package com.sergiorb.java_beca_coritel.lettergrades;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+//  Main class
 public class LetterGrades {
 
+	// Main method
 	public static void main(String[] args) {
 		
+		int value = 0; // Stores user input
 		Scanner input = new Scanner(System.in); // user input object.
+		Class myClass = new Class(); // Class object
 		
-		int student = 1;
-		int passes = 0;
-		int failures = 0;
-		int value = 0;
-		String preValue;
-		String invalidString = "INVALID_STRING";
+		// Stores MarkGrade objects on Class object.
+		ArrayList<MarkGrade> markGradeList = new ArrayList<MarkGrade>(); 
 		
-		ArrayList<MarkGrade> markGradeList = new ArrayList<MarkGrade>();
-		
-		
-		// While student exams stored are less than 10...
 		System.out.println("Enter integer grades in the range 0-100.");
 		System.out.println("Type the end-of-file indicator to terminate input:");
 		System.out.println("Type the end-of-file indicator to terminate input:");
@@ -40,8 +48,9 @@ public class LetterGrades {
 				value = -1; // Asserts invalid value
 			}
 			
-			if(value >= 0 && value <= 100){ // 
+			if(value >= 0 && value <= 100){ // If value is correct...
 				
+				// Adds a new MarkGrade object to markGrade list.
 				markGradeList.add(new MarkGrade(value));
 				
 			} else { // incorrect value
@@ -50,10 +59,12 @@ public class LetterGrades {
 			}
 		}
 		
-		for (MarkGrade markGrade : markGradeList) {
-			
-			System.out.printf("%d - %s\n", (int)markGrade.getMark(), markGrade.getGrade());
-		}
+		input.close(); // Close scanner object
+		
+		myClass = new Class(); // Instantiate a class and...
+		myClass.addMarkGradeArray(markGradeList); //...sets markGrade list. 
+		
+		myClass.printInform(); // Inform the user
 	}
 
 }
