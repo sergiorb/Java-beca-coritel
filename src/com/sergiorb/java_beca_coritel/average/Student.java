@@ -144,14 +144,20 @@ public class Student {
 	// Prints in terminal the student`s info.
 	public void printInform() {
 	
-		// Format the message.
-		String message = String.format("\n\n%s, with an average of %.2f, "
-				+ "has a grade of %S\n", getName(), getAverage(), getGrade());
-		
-		// Prints it.
-		System.out.println(message);
-		
-		// Calls printMarkArray.
-		printMarkArray();
+		if(!marks.isEmpty()) {
+			
+			// Format the message.
+			String message = String.format("\n\n%s, with an average of %.2f, "
+					+ "has a grade of %S\n", getName(), getAverage(), getGrade());
+			
+			// Prints it.
+			System.out.println(message);
+			
+			// Calls printMarkArray.
+			printMarkArray();
+		} else {
+			
+			System.out.println("No grades were entered");
+		}
 	}
 }
