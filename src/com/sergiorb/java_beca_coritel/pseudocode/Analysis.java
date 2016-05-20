@@ -37,7 +37,7 @@ public class Analysis {
 			} catch(InputMismatchException e) { // If entered anything than an integer 
 				
 				input.next(); // Cleans input buffer
-				value = 3; // Aserts invalid value
+				value = 3; // Asserts invalid value
 			}
 			
 			if(value == 1){ // If exam is passed...
