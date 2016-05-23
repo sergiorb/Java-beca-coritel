@@ -97,6 +97,5 @@ public class Craps {
 		// Prints who gain
 		System.out.printf("Player %s\n", playerWins?"wins!!":"not wins");
 		System.out.printf("Bank %s\n", bankWins?"wins!!":"not wins");
-
 	}
 }
