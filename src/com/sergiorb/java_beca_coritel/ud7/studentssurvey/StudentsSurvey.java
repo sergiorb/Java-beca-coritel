@@ -39,11 +39,9 @@ public class StudentsSurvey {
 		
 		// Loops over valuationsQuantity to show user how many people have voted every value.
 		for (int i = 0; i < valuationsQuantity.length; i++) {
-			System.out.printf("Calification Value[%d]:   %,d %s\n",
+			System.out.printf("Calification Value[%d]:   %02d %s\n",
 					i+1, valuationsQuantity[i], valuationsQuantity[i]==1?"person":"people");
 		}
-
- 
 	}
 
 }
