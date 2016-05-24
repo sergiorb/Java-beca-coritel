@@ -1,6 +1,6 @@
 /**
- * Se pidio a 20 estudiantes de una cafetería que valoraran la 
- * comida entre 1 y 5 (1=Pésimo y 5=Excelente)
+ * There were asked 20 students to make a valuation from a school cafeteria.
+ * They could assign a score from 1(Awful) to 5(Excellent).
  * 
  */
 
