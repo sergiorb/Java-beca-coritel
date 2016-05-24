@@ -18,6 +18,18 @@ public class TestCards {
 		
 		deck.shuffleCards(); // Shuffle cards
 		deck.printDeck(); // Prints deck
+		
+		System.out.println("\n---------------------\n");
+		
+		PokerCard card = deck.dealCard(); // Deal a card
+		System.out.println(card.toString());
+		
+		card = deck.dealCard(); // Deal a new card
+		System.out.println(card.toString());
+		
+		card = deck.dealCard(); // Deal a new card
+		System.out.println(card.toString());
+		
 	}
 
 }

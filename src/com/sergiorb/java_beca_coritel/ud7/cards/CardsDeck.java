@@ -15,7 +15,7 @@ public class CardsDeck {
 	private int CARDS_NUMBER; // Deck number of cards.
 	private SecureRandom randomNumbers = new SecureRandom(); // Retireve secure random number.
 	
-	/** Contructor */
+	/** Constructor */
 	public CardsDeck() {
 		
 		// Calculates the number of cards, based on card faces and suits
@@ -98,6 +98,22 @@ public class CardsDeck {
 			// Sets the random card position as the current card.
 			deck[randomIndex] = temp;
 		}
+	}
+	
+	/** @method Retrieves a card from deck */
+	public PokerCard dealCard() {
+	
+		// For every car in deck...
+		for (int i = 0; i < deck.length; i++) {
+			
+			// If card is not assigned.
+			if(!deck[i].isAssigned()) {
+				deck[i].setAssigned(true); // Sets card as assigned.
+				return deck[i]; // Returns the card
+			}
+		}
+		
+		return null; // If all cards are assigned, returns null.
 	}
 	
 	/** @method prints deck */

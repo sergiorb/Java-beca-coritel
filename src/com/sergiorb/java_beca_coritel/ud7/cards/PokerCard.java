@@ -17,8 +17,19 @@ public class PokerCard {
 			"Six", "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King",};
 	// Face options for Poker cards.
 	private final static String[] faceOptions = {"Hearts", "Diamonds", "Clubs", "Spades"};
+	private boolean isAssigned; // Stores if this card it's out of his deck or no.
 	
-	 /** @return the face */ 
+	/** @return the isAssigned */ 
+	public boolean isAssigned() {
+		return isAssigned;
+	}
+
+	/** @param face the isAssigned to set */
+	public void setAssigned(boolean isAssigned) {
+		this.isAssigned = isAssigned;
+	}
+
+	/** @return the face */ 
 	public String getFace() {
 		return face;
 	}
@@ -46,5 +57,12 @@ public class PokerCard {
 	/** @ return all face options */
 	public static String[] getAllFaceOptions() {
 		return faceOptions;
+	}
+	
+	@Override
+	public String toString() {
+		
+		return String.format("%s of %s", this.getFace(), this.getSuit());
+		
 	}
 }
