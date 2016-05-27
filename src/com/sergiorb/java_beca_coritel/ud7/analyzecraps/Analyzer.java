@@ -16,6 +16,7 @@ public class Analyzer {
 	private ArrayList<GameData> games; // Stores GameData objects to work with them.
 	private int maxRounds; // Maximum number of rounds we want to analyze.
 	private double dataPerDuration[][]; // Stores analyzed data.
+	private double averageDuration;
 
 	/** @constructor main */
 	public Analyzer(int totalPlatedGames, ArrayList<GameData> games) {
@@ -75,6 +76,16 @@ public class Analyzer {
 		this.dataPerDuration = dataPerDuration;
 	}
 
+	/** @return the averageDuration */
+	private double getAverageDuration() {
+		return averageDuration;
+	}
+
+	/**@param averageDuration the averageDuration to set */
+	private void setAverageDuration(double averageDuration) {
+		this.averageDuration = averageDuration;
+	}
+
 	/** @method Any GameData object with a duration greater that the maximum value 
 	 * of rounds that we want to analyze, it is set to maxRounds value. */
 	private void trimDataToMaxRounds() {
@@ -99,6 +110,8 @@ public class Analyzer {
 
 			// Get its finishing round (-1 to adjusts it to the array)
 			int round = game.getRound()-1; 
+			
+			averageDuration += round+1; // Calculates average duration (Sum) 
 
 			// If game is wined...
 			if (game.isWined()) {
@@ -114,6 +127,8 @@ public class Analyzer {
 			dataPerDuration[round][3] = dataPerDuration[round][1] / (dataPerDuration[round][0]
 					+ dataPerDuration[round][1]);
 		}
+		
+		setAverageDuration(getAverageDuration() / getTotalPlayedGames());
 	}
 	
 	/** @method prints data array for user */
@@ -132,5 +147,7 @@ public class Analyzer {
 			
 			System.out.printf("#%,4d   %,7d  %,7d %6.2f   %6.2f\n", i+1, winned, lost, winRate, loseRate);
 		}
+		
+		System.out.printf("\nAverage Duration: %.2f\n", getAverageDuration());
 	}
 }
