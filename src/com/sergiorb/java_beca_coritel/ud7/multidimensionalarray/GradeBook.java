@@ -152,6 +152,8 @@ public class GradeBook {
 
 				value = studentsGrades[i][j];
 
+				// ++gradesByRange[value/10]
+				
 				if (value == 100) {
 					gradesByRange[10]++;
 				} else if (value >= 90) {
@@ -209,7 +211,7 @@ public class GradeBook {
 		
 		// For every row...
 		for (int i = 0; i < studentsGrades.length; i++) {
-			System.out.printf("#%d:    ", i);
+			System.out.printf("#%2d:    ", i+1);
 			
 			// loop over every column...
 			for (int j = 0; j < studentsGrades[i].length; j++) {
