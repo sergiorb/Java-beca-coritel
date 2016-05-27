@@ -103,7 +103,7 @@ public class Analyzer {
 		int winned, lost;
 		double winRate, loseRate;
 		
-		System.out.printf("Round  Winned  Lost     WinRate  LoseRate\n");
+		System.out.printf("Round   Winned   Lost      WinRate  LoseRate\n");
 		for (int i = 0; i < dataPerDuration.length; i++) {
 			
 			winned = (int) this.getDataPerDuration()[i][0];
@@ -111,7 +111,7 @@ public class Analyzer {
 			winRate = this.getDataPerDuration()[i][2];
 			loseRate = this.getDataPerDuration()[i][3];
 			
-			System.out.printf("#%3d   %6d  %6d %6.2f   %6.2f\n", i+1, winned, lost, winRate, loseRate);
+			System.out.printf("#%,4d   %,7d  %,7d %6.2f   %6.2f\n", i+1, winned, lost, winRate, loseRate);
 		}
 	}
 }
