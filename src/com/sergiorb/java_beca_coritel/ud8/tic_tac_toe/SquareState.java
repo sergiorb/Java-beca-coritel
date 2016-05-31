@@ -2,8 +2,8 @@ package com.sergiorb.java_beca_coritel.ud8.tic_tac_toe;
 
 public enum SquareState {
 	BLANK(""),
-	CROSS("X"),
-	CIRCLE("O");
+	CIRCLE("O"),
+	CROSS("X");
 	
 	private String squareState;
 	
@@ -17,6 +17,6 @@ public enum SquareState {
 	
 	@Override
 	public String toString() {
-		return  String.format("%s", this.getSquareState());
+		return String.format("%s", this.getSquareState());
 	}
 }

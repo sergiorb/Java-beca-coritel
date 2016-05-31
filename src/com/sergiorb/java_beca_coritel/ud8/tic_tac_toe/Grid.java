@@ -1,18 +1,22 @@
 package com.sergiorb.java_beca_coritel.ud8.tic_tac_toe;
 
 import java.security.InvalidParameterException;
+import java.util.EnumSet;
 
 public class Grid {
 
 	private Square[][] matrix;
 	private int xMatrixLength;
 	private int yMatrixLength;
+	protected SquareState winedBy;
+	protected int winNumber;
 	
 	protected Grid() {
 		this.setxMatrixLength(3);
 		this.setyMatrixLength(3);
 		this.matrix = new Square[this.getxMatrixLength()][this.getyMatrixLength()];
 		this.generateMatrix();
+		this.setWinNumber(3);
 	}
 	
 	protected Grid (int x, int y) {
@@ -20,12 +24,14 @@ public class Grid {
 		this.setyMatrixLength(y);
 		this.matrix = new Square[this.getxMatrixLength()][this.getyMatrixLength()];
 		this.generateMatrix();
+		this.setWinNumber(3);
 	}
 	
 	protected Grid(Square[][] matrix) {
 		this.setMatrix(matrix);
 		this.setxMatrixLength(this.getMatrix().length);
 		this.setyMatrixLength(this.getMatrix()[1].length);
+		this.setWinNumber(3);
 	}
 
 	/** @return the matrix */
@@ -58,6 +64,59 @@ public class Grid {
 		this.yMatrixLength = yMatrixLength;
 	}
 	
+	/** @return the winNumber */
+	protected int getWinNumber() {
+		return winNumber;
+	}
+
+	/** @param winNumber the winNumber to set  */
+	private void setWinNumber(int winNumber) {
+		
+		if(winNumber <= this.getxMatrixLength()) {
+			if (winNumber <= this.getyMatrixLength()) {
+				this.winNumber = winNumber;
+			} else {
+				throw new InvalidParameterException();
+			}	
+		} else {
+			throw new InvalidParameterException();
+		}
+	}
+
+	/** @return the winedBy */
+	protected SquareState getWinedBy() {
+		return winedBy;
+	}
+
+	/** @param winedBy the winedBy to set */
+	protected void setWinedBy(SquareState winedBy) {
+		this.winedBy = winedBy;
+	}
+	
+	protected boolean isGridFull() {
+		
+		int counter = 0;
+		int totalSquares = this.getxMatrixLength() * this.getyMatrixLength();
+		
+		for (int i = 0; i < matrix.length; i++) {
+			for (int j = 0; j < matrix[i].length; j++) {
+				if(matrix[i][j].getSquareState() != SquareState.BLANK) {
+					counter++;
+				}
+			}
+		}
+		
+		if(counter == totalSquares) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	protected EnumSet<SquareState> getSquarePlayerStates() {
+		return EnumSet.range(SquareState.CIRCLE, SquareState.CROSS);
+	}
+	
 	/** @method generates default blank matrix */
 	private void generateMatrix() {
 				
@@ -69,8 +128,7 @@ public class Grid {
 		}
 	}
 	 
-	
-	protected void setSquareState(int row, int column, int state) {
+	protected boolean setSquareState(int row, int column, SquareState state) {
 		
 		String message;
 		
@@ -83,23 +141,13 @@ public class Grid {
 			message = String.format("Wrong column value: Select from 0 to %d", this.getyMatrixLength()-1);
 			throw new InvalidParameterException(message);
 		}
-		
-		switch (state) {
-		case 0:
-			this.getMatrix()[row][column].setSquareState(SquareState.BLANK);
-			break;
-		case 1:
-			this.getMatrix()[row][column].setSquareState(SquareState.CIRCLE);
-			break;
-		case 2:
-			this.getMatrix()[row][column].setSquareState(SquareState.CROSS);
-			break;
-		default:
-			message = String.format("%d is not a valid state. Options are:"
-					+ "\nBLANK:0\nCIRCLE:1\nCROSS:2", state);
-			throw new InvalidParameterException(message);
+				
+		if(this.getMatrix()[row][column].getSquareState() == SquareState.BLANK) {
+			this.getMatrix()[row][column].setSquareState(state);
+			return true;
+		} else {
+			return false;
 		}
-		
 	}
 	
 	protected SquareState getSquareState(int x, int y) {
@@ -117,12 +165,158 @@ public class Grid {
 	
 	protected int getRandomStateNumber() {
 		
-		int optionsLength = SquareState.values().length;
+		EnumSet<SquareState> options = EnumSet.range(SquareState.CIRCLE, SquareState.CROSS);		
 		
-		System.out.println(optionsLength);
-		int number = (int) Math.ceil(Math.random() * optionsLength);
+		return (int) Math.ceil(Math.random() * options.size());
+	}
+	
+	protected SquareState checkWinInX() {
 		
-		return number;
+		int count = 0;
+		SquareState previousState = SquareState.BLANK;
+		
+		for (int i = 0; i < this.getxMatrixLength(); i++) {
+			for (int j = 0; j < this.getyMatrixLength(); j++) {
+				
+				if(this.getSquareState(i, j) != previousState ) {
+					count = 0;
+				} 
+				
+				switch (this.getSquareState(i, j)) {
+				case CIRCLE:
+					count++;
+					break;
+				case CROSS:
+					count++;
+					break;
+				default:
+					break;
+				}
+				
+				if(count == this.getWinNumber()) {
+										
+					this.setWinedBy(this.getSquareState(i, j));
+					
+					return this.getSquareState(i, j);
+				}
+				
+				previousState = this.getSquareState(i, j);
+			}
+			
+			count = 0;
+		}
+
+		return null;
+	}
+	
+	protected SquareState checkWinInY() {
+		
+		int count = 0;
+		SquareState previousState = SquareState.BLANK;
+
+		for (int i = 0; i < this.getyMatrixLength(); i++) {
+			for (int j = 0; j < this.getxMatrixLength(); j++) {
+				
+				if(this.getSquareState(j, i) != previousState ) {
+					count = 0;
+				} 
+				
+				switch (this.getSquareState(j, i)) {
+				case CIRCLE:
+					count++;
+					break;
+				case CROSS:
+					count++;
+					break;
+				default:
+					break;
+				}
+				
+				if(count == this.getWinNumber()) {
+										
+					this.setWinedBy(this.getSquareState(j, i));
+					
+					return this.getSquareState(j, i);
+
+				}
+				
+				previousState = this.getSquareState(j, i);
+			}
+			
+			count = 0;
+		}
+		
+		return null;
+	}
+	
+	protected SquareState checkWinInXY() {
+		
+		int count = 0;
+		SquareState previousState = SquareState.BLANK;
+
+		for (int i = 0; i < this.getyMatrixLength(); i++) {				
+				if(this.getSquareState(i, i) != previousState ) {
+					count = 0;
+				} 
+				
+				switch (this.getSquareState(i, i)) {
+				case CIRCLE:
+					count++;
+					break;
+				case CROSS:
+					count++;
+					break;
+				default:
+					break;
+				}
+				
+				if(count == this.getWinNumber()) {
+					this.setWinedBy(this.getSquareState(i, i));
+					return this.getSquareState(i, i);
+				}
+				
+				previousState = this.getSquareState(i, i);
+		}
+		
+		count = 0;
+		
+		int retroColumn = this.getyMatrixLength() - 1;
+		
+		for (int i = 0; i < this.getxMatrixLength(); i++) {				
+			if(this.getSquareState(i, retroColumn) != previousState ) {
+				count = 0;
+			} 
+			
+			switch (this.getSquareState(i, retroColumn)) {
+			case CIRCLE:
+				count++;
+				break;
+			case CROSS:
+				count++;
+				break;
+			default:
+				break;
+			}
+			
+			if(count == this.getWinNumber()) {
+				this.setWinedBy(this.getSquareState(i, retroColumn));
+				return this.getSquareState(i, retroColumn);
+			}
+			
+			previousState = this.getSquareState(i, retroColumn);
+			retroColumn--;
+		}
+		
+		return null;
+	}
+	
+	protected boolean checkWinConditions() {
+		
+		if(this.checkWinInX() != null || this.checkWinInY() != null || this.checkWinInXY() != null) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 	
 	/** @method prints grid */
