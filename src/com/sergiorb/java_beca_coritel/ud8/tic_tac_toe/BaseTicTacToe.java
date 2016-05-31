@@ -1,14 +1,25 @@
+/**
+*	@file BaseTicTacToe.java
+*	@author Sergio Romero Barra
+*
+*	Defines a basic TicTacToe game.
+*/
+
 package com.sergiorb.java_beca_coritel.ud8.tic_tac_toe;
 
 import java.security.InvalidParameterException;
 
+/** Class */
 public abstract class BaseTicTacToe {
 
-	protected Grid grid;
-	protected int winNumber;
+	// Class Variables
+	protected Grid grid; // Stores a grid to play
+	protected int winNumber; // Stores the consecutive number of X or O to win.
 	
+	/** @method Main */
 	public BaseTicTacToe() {
-		this.setGrid(new Grid(3,3));
+		//this.setGrid(new Grid(3,3));
+		this.setGrid(new Grid());
 		this.setWinNumber(3);
 	}
 	
@@ -47,6 +58,7 @@ public abstract class BaseTicTacToe {
 	/** @param winNumber the winNumber to set  */
 	private void setWinNumber(int winNumber) {
 		
+		// Checks that winNumber is smaller or equal to grid X/Y axis.
 		if(winNumber <= this.getGrid().getxMatrixLength()) {
 			if (winNumber <= this.getGrid().getyMatrixLength()) {
 				this.winNumber = winNumber;
@@ -58,6 +70,7 @@ public abstract class BaseTicTacToe {
 		}
 	}
 	
+	/** @method Defines game flow */
 	protected abstract void gameEngine();
 		
 	/** @method print game board */
