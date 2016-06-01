@@ -15,6 +15,11 @@ public class AutoTicTacToe extends BaseTicTacToe {
 		super();
 	}
 	
+	/** @constructor with AI */
+	public AutoTicTacToe(BaseAI ai) {
+		super(ai);
+	}
+	
 	/*
 	public AutoTicTacToe(int x, int y) {
 		super(x, y);
@@ -31,7 +36,7 @@ public class AutoTicTacToe extends BaseTicTacToe {
 		boolean win = false; // Stores if game is wined.
 		int sentinel = 0; // Helps with player turns
 		
-		LowAI ia = new LowAI(); // Instantiates an AI object
+		BaseAI ia = this.getAi(); // Instantiates an AI object
 		
 		System.out.println("----------------------------------------------");
 		System.out.println("\nAutoTicTacToe: an IA playing against itself.");

@@ -16,6 +16,12 @@ public class PlayerVsIaTicTacToe extends BaseTicTacToe {
 	public PlayerVsIaTicTacToe() {
 		super();
 	}
+	
+	/** @constructor with AI */
+	public PlayerVsIaTicTacToe(BaseAI ai) {
+		super(ai);
+	}
+	
 	/*
 	public PlayerVsIaTicTacToe(int x, int y) {
 		super(x, y);
@@ -39,7 +45,7 @@ public class PlayerVsIaTicTacToe extends BaseTicTacToe {
 		SquareState userState = SquareState.BLANK; // Default user state.
 		SquareState iaState = SquareState.BLANK; // Default ia state.
 		
-		LowAI ia = new LowAI(); // IA object.
+		BaseAI ia = this.getAi(); // IA object.
 		
 		System.out.println("------------------------------------------");
 		System.out.println("\nPlayer Vs IA: play against the computer.");
@@ -109,7 +115,9 @@ public class PlayerVsIaTicTacToe extends BaseTicTacToe {
 			win = this.grid.checkWinConditions();
 		}
 		
-		input.close(); // Close input
+		input.close(); // Close user input
+		
+		this.printBoard();
 		
 		// Shows witch state win
 		System.out.printf("\nWinned by %s\n", this.grid.getWinedBy() != null ? this.grid.getWinedBy():"No One");

@@ -16,6 +16,12 @@ public class PlayerVsPlayerTicTacToe extends BaseTicTacToe {
 	public PlayerVsPlayerTicTacToe() {
 		super();
 	}
+	
+	/** @constructor with AI */
+	public PlayerVsPlayerTicTacToe(BaseAI ai) {
+		super(ai);
+	}
+	
 	/*
 	public PlayerVsPlayerTicTacToe(int x, int y) {
 		super(x, y);
@@ -80,6 +86,8 @@ public class PlayerVsPlayerTicTacToe extends BaseTicTacToe {
 		}
 		
 		input.close(); // Close input object
+		
+		this.printBoard();
 		
 		// Shows who wins
 		System.out.printf("\nWinned by %s\n", this.grid.getWinedBy() != null ? this.grid.getWinedBy():"No One");

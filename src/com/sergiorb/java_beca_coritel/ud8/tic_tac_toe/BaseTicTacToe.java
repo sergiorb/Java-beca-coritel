@@ -15,12 +15,22 @@ public abstract class BaseTicTacToe {
 	// Class Variables
 	protected Grid grid; // Stores a grid to play
 	protected int winNumber; // Stores the consecutive number of X or O to win.
+	protected BaseAI ai;
 	
-	/** @method Main */
+	/** @constructor Main */
 	public BaseTicTacToe() {
 		//this.setGrid(new Grid(3,3));
 		this.setGrid(new Grid());
 		this.setWinNumber(3);
+		this.setAi(new LowAI());
+	}
+	
+	/** @constructor with AI*/
+	public BaseTicTacToe(BaseAI ai) {
+		//this.setGrid(new Grid(3,3));
+		this.setGrid(new Grid());
+		this.setWinNumber(3);
+		this.setAi(ai);
 	}
 	
 	/*
@@ -70,6 +80,16 @@ public abstract class BaseTicTacToe {
 		}
 	}
 	
+	/** @return the ai */
+	protected BaseAI getAi() {
+		return ai;
+	}
+
+	/** @param ai the ai to set */
+	protected void setAi(BaseAI ai) {
+		this.ai = ai;
+	}
+
 	/** @method Defines game flow */
 	protected abstract void gameEngine();
 		
