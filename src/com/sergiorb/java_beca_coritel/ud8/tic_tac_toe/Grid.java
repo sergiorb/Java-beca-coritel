@@ -189,6 +189,34 @@ public class Grid {
 		}
 	}
 	
+	/** @return an integer array with a blank position */
+	protected int[] getRandomBlankPosition() {
+		
+		int[] position = new int[2];
+						
+		do {
+			
+			// Generates a random position from the grid.
+			int randomX = (int) Math.ceil(Math.random() * this.getxMatrixLength())-1;
+			int randomY = (int) Math.ceil(Math.random() * this.getyMatrixLength())-1;
+			
+			// If that position is blank... 
+			if(this.squareIsBlank(randomX, randomY)) {
+				
+				position[0] = randomX;
+				position[1] = randomY;
+
+				return position;
+			}
+			
+		} while(!this.isGridFull());
+		
+		position[0] = -1;
+		position[1] = -1;
+		
+		return position;
+	}
+	
 	/** @return If there is a winer State on X axis */
 	protected boolean checkWinInX() {
 		

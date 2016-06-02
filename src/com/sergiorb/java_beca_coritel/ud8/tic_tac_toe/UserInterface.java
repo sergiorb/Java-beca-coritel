@@ -26,8 +26,9 @@ public class UserInterface {
 			
 			System.out.println("Select a game mode:");
 			System.out.println("[1] Auto");
-			System.out.println("[2] Player Vs IA");
-			System.out.println("[3] Player Vs Player");
+			System.out.println("[2] Player Vs Low IA");
+			System.out.println("[3] Player Vs Standar IA (testing)");
+			System.out.println("[4] Player Vs Player");
 			System.out.println("[0] Exit");
 			
 			option = input.nextInt(); // Stores user input
@@ -42,12 +43,17 @@ public class UserInterface {
 				game.gameEngine();
 				sentinel = false;
 				break;
-			case 2: // Player Vs IA.
+			case 2: // Player Vs Low IA.
 				game = new PlayerVsIaTicTacToe();
 				game.gameEngine();
 				sentinel = false;
 				break;
-			case 3: // Player Vs Player.
+			case 3: // Player Vs Standar IA.
+				game = new PlayerVsIaTicTacToe(new StandarAI());
+				game.gameEngine();
+				sentinel = false;
+				break;
+			case 4: // Player Vs Player.
 				game = new PlayerVsPlayerTicTacToe();
 				game.gameEngine();
 				sentinel = false;
