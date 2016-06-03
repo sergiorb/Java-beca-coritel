@@ -4,7 +4,7 @@
  *
  */
 
-package com.sergiorb.java_beca_coritel.ud12.db;
+package com.sergiorb.java_beca_coritel.ud12.atm;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

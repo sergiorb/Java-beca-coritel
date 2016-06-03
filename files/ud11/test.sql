@@ -40,7 +40,7 @@ INSERT INTO students_subjects (id_student, id_subject, taken) values
 (2,1,'n'),
 (2,3,'y');
 
-/*
+
 SELECT * FROM students;
 SELECT * from subjects;
 SELECT * from students WHERE id = 1;
@@ -62,4 +62,3 @@ WHERE last_name <= ALL(SELECT last_name from students);
 SELECT last_name, name
 FROM students
 WHERE last_name = (SELECT min(last_name) FROM students);
-*/

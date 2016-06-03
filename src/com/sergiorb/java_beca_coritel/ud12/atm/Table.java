@@ -5,8 +5,9 @@
  *
  */
 
-package com.sergiorb.java_beca_coritel.ud12.db;
+package com.sergiorb.java_beca_coritel.ud12.atm;
 
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 /** Abstracts Table class */
@@ -14,6 +15,12 @@ public abstract class Table {
 
 	private DB databaseConnection; // Stores a db connection object.
 	private int verboseLevel;
+	
+	protected PreparedStatement all;
+	protected PreparedStatement get;
+	protected PreparedStatement post;
+	protected PreparedStatement put;
+	protected PreparedStatement delete;
 	
 	/** @constructor Main */
 	public Table(DB databaseConnection) {
@@ -47,6 +54,31 @@ public abstract class Table {
 		this.verboseLevel = verboseLevel;
 	}
 
+	/** @return the all */
+	protected PreparedStatement getAll() {
+		return all;
+	}
+
+	/** @return the get */
+	protected PreparedStatement getGet() {
+		return get;
+	}
+
+	/** @return the post */
+	protected PreparedStatement getPost() {
+		return post;
+	}
+
+	/** @return the put */
+	protected PreparedStatement getPut() {
+		return put;
+	}
+
+	/** @return the delete */
+	protected PreparedStatement getDelete() {
+		return delete;
+	}
+
 	public boolean isDBConnected() throws SQLException{
 		
 		if(this.getDatabaseConnection().getConnection() == null || 
@@ -59,4 +91,6 @@ public abstract class Table {
 			return true;
 		}
 	}
+	
+	protected abstract void setCRUDMethods() throws SQLException;
 }
