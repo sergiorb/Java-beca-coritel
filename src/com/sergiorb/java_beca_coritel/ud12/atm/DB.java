@@ -148,16 +148,20 @@ public class DB {
 	}
 	
 	/** @method Connects to db */
-	public void Connect() throws SQLException, ClassNotFoundException {
+	public void connect() throws SQLException, ClassNotFoundException {
 		
 		// If there is no connection object...
 		if(this.getConnection() == null) {
 			
 			if(this.getVerbosityLevel()>=3){System.out.print("Connecting...");};
 			
-			// Saves a new connection object.
-			this.setConnection(DriverManager.getConnection(this.getUrl(), this.getDbUser(), this.getDbPassword()));
-	
+			try {
+				// Saves a new connection object.
+				this.setConnection(DriverManager.getConnection(this.getUrl(), this.getDbUser(), this.getDbPassword()));
+			} catch(Exception e) {
+				System.out.println(e.getMessage());
+			}
+			
 			if(this.getVerbosityLevel()>=3){System.out.println("Connected!");};
 		
 		// A connection exists!!
@@ -167,7 +171,7 @@ public class DB {
 	}
 	
 	/** @method disconnects from db */
-	public void Disconnect() throws SQLException {
+	public void disconnect() throws SQLException {
 		
 		if(this.getConnection() != null) {
 		
@@ -176,6 +180,7 @@ public class DB {
 			// Closes db connection.
 			this.getConnection().close();
 			this.setConnection(null);
+			
 			if(this.getVerbosityLevel()>=3){System.out.println("Disconected!");};
 		} else {
 			if(this.getVerbosityLevel()>=3){System.out.println("[DB][Warning] DB already disconected!!");};
