@@ -171,17 +171,22 @@ public class DB {
 	}
 	
 	/** @method disconnects from db */
-	public void disconnect() throws SQLException {
+	public void disconnect() {
 		
 		if(this.getConnection() != null) {
 		
 			if(this.getVerbosityLevel()>=3){System.out.printf("Disconecting...");};
 		
 			// Closes db connection.
-			this.getConnection().close();
-			this.setConnection(null);
-			
-			if(this.getVerbosityLevel()>=3){System.out.println("Disconected!");};
+			try {
+				
+				this.getConnection().close();
+				this.setConnection(null);
+				if(this.getVerbosityLevel()>=3){System.out.println("Disconected!");};
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		} else {
 			if(this.getVerbosityLevel()>=3){System.out.println("[DB][Warning] DB already disconected!!");};
 		}

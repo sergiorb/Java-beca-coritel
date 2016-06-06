@@ -1,8 +1,10 @@
 /**
  * 
- * @file Students.java
+ * @file UserTable.java
  * @author Sergio Romero Barra
- *
+ * 
+ * Defines Users Table access methods.
+ * 
  */
 
 package com.sergiorb.java_beca_coritel.ud12.atm;
@@ -16,7 +18,7 @@ import java.util.ArrayList;
 public class UsersTable extends Table {
 	
 	private final String tableName = "users"; // DB Table name
-	private PreparedStatement filterByName;
+	private PreparedStatement filterByName; // SQL prepared query.
 
 	/** @throws SQLException 
 	 * @constructor Main */
@@ -40,12 +42,12 @@ public class UsersTable extends Table {
 		}
 	}
 
-
 	/** @return the tableName */
 	public String getTableName() {
 		return tableName;
 	}
 	
+	/** @method defines CRUD and additional DB methods*/
 	@Override
 	protected void setCRUDMethods() throws SQLException {
 		
@@ -64,26 +66,31 @@ public class UsersTable extends Table {
 				String.format("SELECT * FROM %s WHERE name = '%?%'", this.getTableName()));
 	}
 	
+	/** @return all users objects within an arrayList */
 	public ArrayList<User> all() {
 		
 		
 		ArrayList<User> users  = new ArrayList<User>();
 		
+		// If prepared statement is defined
 		if(this.getAll() != null) {
 			
 			try {
 				
-				ResultSet result = this.getAll().executeQuery();
-			
-			
+				// Executes query
+				ResultSet result = this.getAll().executeQuery(); 
+				
 				users = new ArrayList<User>();
 				
+				// For every record in the set...
 				while(result.next()) {
+					
+					// Creates and adds a new User object,
 					users.add(new User(result.getInt(1), result.getString(2), 
 							result.getString(3), result.getString(4)));
 				}
 				
-				return users;
+				return users; // Returns arraylist
 				
 			} catch (SQLException e) {
 				
@@ -91,27 +98,33 @@ public class UsersTable extends Table {
 			}
 		}
 		
-		return users; 
+		return users; // Return void arrayList
 	}
-		
+	
+	/** @return an User object by its id */
 	public User get(int id) {
 			
 		User user;
-			
-		if(this.getGet() != null) {
+		
+		// If prepared statement is defined
+		if(this.get != null) {
 				
 			try {
 				
-				this.getGet().setInt(1, id);
+				// Sets query id
+				this.get.setInt(1, id);
 			
+				// Executes query
 				ResultSet result = this.getGet().executeQuery();
 				
+				// If there is a record...
 				if(result.next()) {
 				
+					// Creates and adds a new User object.
 					user = new User(result.getInt(1), result.getString(2), 
 							result.getString(3), result.getString(4));
 						
-					return user;
+					return user; // Returns it.
 				}
 				
 			} catch (SQLException e) {
@@ -119,26 +132,31 @@ public class UsersTable extends Table {
 			}
 		}
 		
-		return null;
+		return null; // Returns void.
 	}
 	
+	/** @return User object arrayList by name */
 	public ArrayList<User> filterByName() throws SQLException {
-		
 		
 		ArrayList<User> users = new ArrayList<User>();
 		
+		// If prepared statement is defined.
 		if(this.getAll() != null) {
 			
+			// Executes query.
 			ResultSet result = this.getAll().executeQuery();
-						
+		
+			// For every record in set...
 			while(result.next()) {
+				
+				// Creates and adds a new User object.
 				users.add(new User(result.getInt(1), result.getString(2), 
 						result.getString(3), result.getString(4)));
 			}
 			
-			return users;
+			return users; // Returns it.
 		}
 		
-		return users;
+		return users; // Returns void.
 	}
 }

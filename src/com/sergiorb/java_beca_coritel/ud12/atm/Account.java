@@ -1,11 +1,21 @@
+/**
+ * 
+ * @file Account.java
+ * @author Sergio Romero Barra
+ * 
+ * Defines an Account class.
+ */
+
 package com.sergiorb.java_beca_coritel.ud12.atm;
 
+// Main class
 public class Account {
 		
-		private int id;
-		private String uuid;
-		private double amount;
+		private int id; // Account id.
+		private String uuid; // Account uuid.
+		private double amount; // Account balance.
 		
+		/** @constructor main */
 		public Account(int id, String uuid, double amount) {
 			this.setId(id);
 			this.setUuid(uuid);

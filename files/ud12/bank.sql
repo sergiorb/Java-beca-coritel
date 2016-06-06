@@ -15,7 +15,7 @@ CREATE TABLE users (
 CREATE TABLE accounts (
     id INT NOT NULL UNIQUE PRIMARY KEY AUTO_INCREMENT,
     uuid VARCHAR(64) NOT NULL,
-	amount FLOAT(10,2) NOT NULL DEFAULT '0.00',
+	amount DOUBLE(20,2) NOT NULL DEFAULT '0.00',
 	id_user INT NOT NULL,
 	FOREIGN KEY (id_user) REFERENCES users(id) ON DELETE CASCADE	
 );
@@ -39,7 +39,7 @@ INSERT INTO users(uuid, name, last_name) VALUES
 ("774de973-a9b4-4424-b432-d9cff9be503d", "Nicholas", "Fury");
 
 INSERT INTO accounts(uuid, amount, id_user) VALUES
-("1be7ea6e-ed13-477b-a95e-cb837807ab5a", 84698754.0, 1),
+("1be7ea6e-ed13-477b-a95e-cb837807ab5a", 8698754.0, 1),
 ("aaf0477d-8a26-41fc-be57-78c6abc27fee", 26784.0, 2),
 ("029aaebf-5e4e-4a01-8309-1562b6d7a235", 1436.0, 3),
 ("bcde668b-a4dc-4a0b-970c-8f0e723a4030", 254143.0, 4);
