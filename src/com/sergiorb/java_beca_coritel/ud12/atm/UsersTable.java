@@ -47,6 +47,16 @@ public class UsersTable extends Table {
 		return tableName;
 	}
 	
+	/** @return the filterByName */
+	public PreparedStatement getFilterByName() {
+		return filterByName;
+	}
+
+	/** @param filterByName the filterByName to set */
+	public void setFilterByName(PreparedStatement filterByName) {
+		this.filterByName = filterByName;
+	}
+
 	/** @method defines CRUD and additional DB methods*/
 	@Override
 	protected void setCRUDMethods() throws SQLException {
@@ -62,8 +72,8 @@ public class UsersTable extends Table {
 		this.delete = this.getDatabaseConnection().getConnection().prepareStatement(
 				String.format("DELETE FROM %s WHERE id = ?", this.getTableName()));
 		
-		this.filterByName = this.getDatabaseConnection().getConnection().prepareStatement(
-				String.format("SELECT * FROM %s WHERE name = '%?%'", this.getTableName()));
+		this.setFilterByName(this.getDatabaseConnection().getConnection().prepareStatement(
+				String.format("SELECT * FROM %s WHERE name = '%?%'", this.getTableName())));
 	}
 	
 	/** @return all users objects within an arrayList */
